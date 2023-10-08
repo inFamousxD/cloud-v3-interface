@@ -1,22 +1,22 @@
 import React from "react";
-import {ExplorerContentPaneStyled, ExplorerHeaderStyled} from "./ContentPanel.styles";
+import {ContentPanelStyled, ContentPanelHeaderStyled} from "./ContentPanel.styles";
 import {Editor} from "@monaco-editor/react";
 import {darkTheme} from "../../../theme/dark.colors";
 
 const ContentPanel: React.FC = () => {
     return (
-        <ExplorerContentPaneStyled>
-            <ExplorerHeaderStyled>
+        <ContentPanelStyled>
+            <ContentPanelHeaderStyled>
                 {
                     [1, 2, 3, 4, 5, 6, 7, 8].map(item => {
-                        return  <div className={"tab"}>
+                        return  <div key={item} className={"tab"}>
                             <span className="material-symbols-outlined type">article</span>
-                            <div className={"title"}>FileName {item}</div>
+                            <div className={"title"}>Window {item}</div>
                             <span className="material-symbols-outlined close">close</span>
                         </div>
                     })
                 }
-            </ExplorerHeaderStyled>
+            </ContentPanelHeaderStyled>
             <Editor defaultLanguage="javascript" defaultValue="" theme={"vs-dark"} options={{
                 fontSize: 13,
                 codeLens: true
@@ -34,7 +34,7 @@ const ContentPanel: React.FC = () => {
                     monaco.editor.setTheme("my-theme");
                 }}
             />
-        </ExplorerContentPaneStyled>
+        </ContentPanelStyled>
     )
 }
 

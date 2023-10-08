@@ -1,13 +1,19 @@
-import React from "react";
-import {ExplorerDirectoriesPaneStyled} from "../ContentPanel/ContentPanel.styles";
-import {ExplorerDirectoriesPaneInterface} from "../ContentPanel/ContentPanel.types";
-import DrawerList from "../DrawerPanel/DrawerList";
+import React, {useState} from "react";
+import SplitPane, {Pane} from "split-pane-react";
+import 'split-pane-react/esm/themes/default.css';
+import ContentPanel from "../ContentPanel/ContentPanel";
+import PanelControlReducer from "./PanelControlReducer";
 
-export const PanelControl: React.FC<ExplorerDirectoriesPaneInterface> = (props) => {
+const PanelControl: React.FC = () => {
+    const [sizes, setSizes] = useState([100, '30%', 'auto']);
+
     return (
-        <ExplorerDirectoriesPaneStyled>
-            <DrawerList name={props.data.name} children={props.data.children} />
-        </ExplorerDirectoriesPaneStyled>
+        <SplitPane sashRender={() => null} sizes={sizes} split={"vertical"} onChange={setSizes}>
+            <Pane minSize={250}>
+                <PanelControlReducer />
+            </Pane>
+            <ContentPanel />
+        </SplitPane>
     )
 }
 

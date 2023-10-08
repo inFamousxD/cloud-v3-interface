@@ -1,7 +1,7 @@
 import styled from "styled-components";
 import {darkTheme} from "../../../theme/dark.colors";
 
-export const ExplorerDirectoriesPaneStyled = styled.div`
+export const DrawerListContainerStyled = styled.div`
   height: 100%;
   background: ${darkTheme.backgroundDarkest};
   color: ${darkTheme.text.color};
@@ -12,7 +12,7 @@ export const ExplorerDirectoriesPaneStyled = styled.div`
   overflow: auto;
 `;
 
-export const ExplorerContentPaneStyled = styled.div`
+export const ContentPanelStyled = styled.div`
   overflow: auto;
   height: 100%;
   background: ${darkTheme.backgroundDarker};
@@ -25,7 +25,7 @@ export const ExplorerContentPaneStyled = styled.div`
   //padding: 10px 0 0 10px;
 `;
 
-export const ExplorerHeaderStyled = styled.div`
+export const ContentPanelHeaderStyled = styled.div`
   display: flex;
   flex-wrap: nowrap;
   flex-grow: 1;

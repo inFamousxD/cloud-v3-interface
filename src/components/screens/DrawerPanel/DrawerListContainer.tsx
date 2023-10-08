@@ -1,10 +1,8 @@
-import React, {useState} from "react";
-import SplitPane, {Pane} from "split-pane-react";
-import 'split-pane-react/esm/themes/default.css';
-import PanelControl from "./PanelControl";
-import ContentPanel from "../ContentPanel/ContentPanel";
+import React from "react";
+import {DrawerListContainerStyled} from "../ContentPanel/ContentPanel.styles";
 import {ExplorerDirectoriesDataType} from "../ContentPanel/ContentPanel.types";
-
+import DrawerList from "./DrawerList";
+import {Outlet} from "react-router-dom";
 const directories: ExplorerDirectoriesDataType = {
     name: 'react-cloud-v3',
     children: [
@@ -2108,17 +2106,14 @@ const directories: ExplorerDirectoriesDataType = {
         }
     ]
 }
-const PanelControlContainer: React.FC = () => {
-    const [sizes, setSizes] = useState([100, '30%', 'auto']);
 
+export const DrawerListContainer: React.FC = () => {
     return (
-        <SplitPane sashRender={() => null} sizes={sizes} split={"vertical"} onChange={setSizes}>
-            <Pane minSize={250}>
-                <PanelControl disableSelection={false} data={directories} />
-            </Pane>
-            <ContentPanel />
-        </SplitPane>
+        <DrawerListContainerStyled>
+            <DrawerList name={directories.name} children={directories.children} />
+            <Outlet />
+        </DrawerListContainerStyled>
     )
 }
 
-export default PanelControlContainer;
+export default DrawerListContainer;
