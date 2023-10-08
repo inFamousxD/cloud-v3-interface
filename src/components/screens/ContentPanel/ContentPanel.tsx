@@ -1,9 +1,9 @@
 import React from "react";
-import {ExplorerContentPaneStyled, ExplorerHeaderStyled} from "./Explorer.styles";
+import {ExplorerContentPaneStyled, ExplorerHeaderStyled} from "./ContentPanel.styles";
 import {Editor} from "@monaco-editor/react";
 import {darkTheme} from "../../../theme/dark.colors";
 
-const ExplorerContentPane: React.FC = () => {
+const ContentPanel: React.FC = () => {
     return (
         <ExplorerContentPaneStyled>
             <ExplorerHeaderStyled>
@@ -38,4 +38,4 @@ const ExplorerContentPane: React.FC = () => {
     )
 }
 
-export default ExplorerContentPane;
+export default ContentPanel;

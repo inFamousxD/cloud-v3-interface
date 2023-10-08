@@ -1,9 +1,9 @@
 import React, {useState} from "react";
 import SplitPane, {Pane} from "split-pane-react";
 import 'split-pane-react/esm/themes/default.css';
-import ExplorerDirectoriesPane from "./ExplorerDirectoriesPane";
-import ExplorerContentPane from "./ExplorerContentPane";
-import {ExplorerDirectoriesDataType} from "./Explorer.types";
+import PanelControl from "./PanelControl";
+import ContentPanel from "../ContentPanel/ContentPanel";
+import {ExplorerDirectoriesDataType} from "../ContentPanel/ContentPanel.types";
 
 const directories: ExplorerDirectoriesDataType = {
     name: 'react-cloud-v3',
@@ -2108,17 +2108,17 @@ const directories: ExplorerDirectoriesDataType = {
         }
     ]
 }
-const ExplorerContainer: React.FC = () => {
+const PanelControlContainer: React.FC = () => {
     const [sizes, setSizes] = useState([100, '30%', 'auto']);
 
     return (
         <SplitPane sashRender={() => null} sizes={sizes} split={"vertical"} onChange={setSizes}>
             <Pane minSize={250}>
-                <ExplorerDirectoriesPane disableSelection={false} data={directories} />
+                <PanelControl disableSelection={false} data={directories} />
             </Pane>
-            <ExplorerContentPane />
+            <ContentPanel />
         </SplitPane>
     )
 }
 
-export default ExplorerContainer;
+export default PanelControlContainer;

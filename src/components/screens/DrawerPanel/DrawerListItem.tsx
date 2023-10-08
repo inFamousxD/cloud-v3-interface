@@ -1,6 +1,6 @@
 import React from 'react';
-import {ExplorerDirectoriesListItemType} from "../Explorer.types";
-import {DirectoriesListItemStyled} from "./Directories.styled";
+import {ExplorerDirectoriesListItemType} from "../ContentPanel/ContentPanel.types";
+import {DirectoriesListItemStyled} from "./DrawerPanel.styled";
 
 type DirectoriesListItemType = {
     data: ExplorerDirectoriesListItemType,
@@ -8,7 +8,7 @@ type DirectoriesListItemType = {
     selected: string,
     setSelected: React.Dispatch<React.SetStateAction<string>>
 }
-const DirectoriesListItem:React.FC<DirectoriesListItemType> = (props) => {
+const DrawerListItem:React.FC<DirectoriesListItemType> = (props) => {
     const { data, depth } = props;
 
     const [displayChildren, setDisplayChildren] = React.useState<boolean>(false);
@@ -36,11 +36,11 @@ const DirectoriesListItem:React.FC<DirectoriesListItemType> = (props) => {
             </div>
             {
                 displayChildren && data.children && data.children.map(item => {
-                    return <DirectoriesListItem key={item.name} data={item} depth={depth+1} selected={props.selected} setSelected={props.setSelected} />
+                    return <DrawerListItem key={item.name} data={item} depth={depth+1} selected={props.selected} setSelected={props.setSelected} />
                 })
             }
         </DirectoriesListItemStyled>
     );
 }
 
-export default DirectoriesListItem;
+export default DrawerListItem;

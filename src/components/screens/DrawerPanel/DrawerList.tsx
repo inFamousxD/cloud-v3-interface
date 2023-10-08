@@ -1,9 +1,9 @@
-import {ExplorerDirectoriesDataType} from "../Explorer.types";
+import {ExplorerDirectoriesDataType} from "../ContentPanel/ContentPanel.types";
 import React from "react";
-import DirectoriesListItem from "./DirectoriesListItem";
-import {DirectoriesHeaderStyled} from "./Directories.styled";
+import DrawerListItem from "./DrawerListItem";
+import {DirectoriesHeaderStyled} from "./DrawerPanel.styled";
 
-const DirectoriesList: React.FC<ExplorerDirectoriesDataType> = (props) => {
+const DrawerList: React.FC<ExplorerDirectoriesDataType> = (props) => {
     const { children, name } = props;
     const [selected, setSelected] = React.useState<string>("");
 
@@ -29,11 +29,11 @@ const DirectoriesList: React.FC<ExplorerDirectoriesDataType> = (props) => {
             </DirectoriesHeaderStyled>
             {
                 children && children.map(item => {
-                    return <DirectoriesListItem key={item.name} data={item} depth={0} selected={selected} setSelected={setSelected}/>
+                    return <DrawerListItem key={item.name} data={item} depth={0} selected={selected} setSelected={setSelected}/>
                 })
             }
         </div>
     )
 }
 
-export default DirectoriesList;
+export default DrawerList;
