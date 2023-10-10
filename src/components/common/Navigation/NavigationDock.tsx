@@ -10,13 +10,21 @@ const NavigationDock: React.FC = () => {
                 navigate("/explorer");
             }}> folder </div>
             {/*<div className="material-symbols-outlined"> memory </div>*/}
-            <div className="material-symbols-outlined"> bookmark </div>
-            <div className="material-symbols-outlined"> search </div>
+            <div className="material-symbols-outlined" onClick={() => {
+                navigate("/bookmarks");
+            }}> bookmark </div>
+            <div className="material-symbols-outlined" onClick={() => {
+                navigate("/search");
+            }}> search </div>
             {/*<div className="material-symbols-outlined"> more_horiz </div>*/}
             <div style={{ flex: 'auto' }} ></div>
-            <div className="material-symbols-outlined"> network_ping </div>
+            <div className="material-symbols-outlined" onClick={() => {
+                navigate("/network_test");
+            }}> network_ping </div>
             {/*<div className="material-symbols-outlined"> overview_key </div>*/}
-            <div className="material-symbols-outlined"> settings </div>
+            <div className="material-symbols-outlined" onClick={() => {
+                navigate("/settings");
+            }}> settings </div>
         </NavigationDockStyled>
     )
 }

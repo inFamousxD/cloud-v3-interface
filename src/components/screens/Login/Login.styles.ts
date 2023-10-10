@@ -11,6 +11,8 @@ export const LoginStyled = styled.div`
 `;
 
 export const LoginFormStyled = styled.div`
+  background: ${darkTheme.backgroundDarker};
+
   color: ${darkTheme.text.color};
   justify-content: center;
   align-items: center;
