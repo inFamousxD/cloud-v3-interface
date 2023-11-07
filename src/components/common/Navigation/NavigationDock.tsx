@@ -1,30 +1,51 @@
 import React from 'react';
 import {NavigationDockStyled} from "./NavigationDock.styles";
-import { useNavigate } from "react-router-dom";
+import {useNavigate} from "react-router-dom";
+import {useDispatch, useSelector} from "react-redux";
+import {AppDispatch, RootState} from "../../../redux/store";
+import mainDock from "../../../redux/slices/application/mainDock";
 
 const NavigationDock: React.FC = () => {
     const navigate = useNavigate();
+    const topOptions = useSelector((state: RootState) => state.mainDock.dockTopOptions);
+    const bottomOptions = useSelector((state: RootState) => state.mainDock.dockBottomOptions);
+    const selectedOption = useSelector((state: RootState) => state.mainDock.selected);
+    const dispatch: AppDispatch = useDispatch();
+
+    const dockOptionOnClick = (navigateTo: string, id: string) => {
+        dispatch(mainDock.actions.selectFromDock({ selected: id }));
+        navigate(navigateTo);
+    }
+
     return (
         <NavigationDockStyled>
-            <div className="material-symbols-outlined" onClick={() => {
-                navigate("/explorer");
-            }}> folder </div>
-            {/*<div className="material-symbols-outlined"> memory </div>*/}
-            <div className="material-symbols-outlined" onClick={() => {
-                navigate("/bookmarks");
-            }}> bookmark </div>
-            <div className="material-symbols-outlined" onClick={() => {
-                navigate("/search");
-            }}> search </div>
-            {/*<div className="material-symbols-outlined"> more_horiz </div>*/}
+            {
+                topOptions.map(option => {
+                    return (
+                        <div
+                            key={option.id}
+                            className={"material-symbols-outlined"}
+                            id={(selectedOption === option.id ? "" : "un") + "selected"}
+                            onClick={() => {dockOptionOnClick(option.navigatesTo, option.id);}}>
+                            {option.icon}
+                        </div>
+                    )
+                })
+            }
             <div style={{ flex: 'auto' }} ></div>
-            <div className="material-symbols-outlined" onClick={() => {
-                navigate("/network_test");
-            }}> network_ping </div>
-            {/*<div className="material-symbols-outlined"> overview_key </div>*/}
-            <div className="material-symbols-outlined" onClick={() => {
-                navigate("/settings");
-            }}> settings </div>
+            {
+                bottomOptions.map(option => {
+                    return (
+                        <div
+                            key={option.id}
+                            className={"material-symbols-outlined"}
+                            id={(selectedOption === option.id ? "" : "un") + "selected"}
+                            onClick={() => {dockOptionOnClick(option.navigatesTo, option.id);}}>
+                            {option.icon}
+                        </div>
+                    )
+                })
+            }
         </NavigationDockStyled>
     )
 }

@@ -1,12 +1,14 @@
-import React from 'react';
+import React, {useState} from 'react';
 import './App.css';
 import RootScreen from "./components/screens/RootScreen/RootScreen";
 import {BrowserRouter, Route, Routes} from "react-router-dom";
-import Login from "./components/screens/Login/Login";
+import AuthContainer from "./components/screens/Login/AuthContainer";
 
 function App() {
-    // return <Login />;
-    return (
+    const [isAuthenticated, setIsAuthenticated] = useState<boolean>(false);
+
+    if (!isAuthenticated) return <AuthContainer setIsAuthenticated={setIsAuthenticated} />;
+    else return (
         <BrowserRouter>
             <Routes>
                 <Route path={"/*"} element={<RootScreen />} />

@@ -26,6 +26,11 @@ export const NavigationDockStyled = styled.div`
     user-select: none;
     padding: 4px;
     transition: all ease-in-out 100ms;
+    
+    &#selected {
+      background: ${darkTheme.accent};
+      border-radius: 4px;
+    }
   }
   :hover {
     background: ${darkTheme.accent};

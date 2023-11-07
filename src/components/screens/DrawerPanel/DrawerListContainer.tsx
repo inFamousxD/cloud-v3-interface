@@ -2,7 +2,6 @@ import React from "react";
 import {DrawerListContainerStyled} from "../ContentPanel/ContentPanel.styles";
 import {ExplorerDirectoriesDataType} from "../ContentPanel/ContentPanel.types";
 import DrawerList from "./DrawerList";
-import {Outlet} from "react-router-dom";
 const directories: ExplorerDirectoriesDataType = {
     name: 'react-cloud-v3',
     children: [
@@ -2111,7 +2110,7 @@ export const DrawerListContainer: React.FC = () => {
     return (
         <DrawerListContainerStyled>
             <DrawerList name={directories.name} children={directories.children} />
-            <Outlet />
+            {/*<Outlet />*/}
         </DrawerListContainerStyled>
     )
 }

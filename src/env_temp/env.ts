@@ -1,0 +1,1 @@
+export const serverURL = "https://9e6acb32-29ef-40be-8406-7fab43be53da.mock.pstmn.io";
