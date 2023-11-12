@@ -1,15 +1,17 @@
-import {ExplorerDirectoriesDataType} from "../ContentPanel/ContentPanel.types";
+import {ExplorerDirectoriesDataType} from "../../ContentPanel/ContentPanel.types";
 import React from "react";
-import DrawerListItem from "./DrawerListItem";
-import {DirectoriesHeaderStyled} from "./DrawerPanel.styled";
+import ExplorerListItem from "./ExplorerListItem";
+import {ExplorerHeaderStyled} from "./ExplorerPanelComponent.styled";
+import {useSelector} from "react-redux";
+import {RootState} from "../../../../redux/store";
 
-const DrawerList: React.FC<ExplorerDirectoriesDataType> = (props) => {
+const ExplorerList: React.FC<ExplorerDirectoriesDataType> = (props) => {
     const { children, name } = props;
-    const [selected, setSelected] = React.useState<string>("");
+    const selected = useSelector((state: RootState) => state.explorer.metadata.selected);
 
     return (
         <div style={{ marginBottom: '30vh' }}>
-            <DirectoriesHeaderStyled>
+            <ExplorerHeaderStyled>
                 <div className="material-symbols-outlined">
                     book_4
                 </div>
@@ -26,14 +28,14 @@ const DrawerList: React.FC<ExplorerDirectoriesDataType> = (props) => {
                 <div className="material-symbols-outlined">
                     more_vert
                 </div>
-            </DirectoriesHeaderStyled>
+            </ExplorerHeaderStyled>
             {
                 children && children.map(item => {
-                    return <DrawerListItem key={item.name} data={item} depth={0} selected={selected} setSelected={setSelected}/>
+                    return <ExplorerListItem key={item.name} data={item} depth={0} selected={selected}/>
                 })
             }
         </div>
     )
 }
 
-export default DrawerList;
+export default ExplorerList;

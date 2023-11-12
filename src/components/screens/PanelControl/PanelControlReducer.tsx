@@ -1,6 +1,6 @@
 import React from "react";
 import 'split-pane-react/esm/themes/default.css';
-import DrawerListContainer from "../DrawerPanel/DrawerListContainer";
+import ExplorerListContainer from "../DockPanelComponents/Explorer/ExplorerListContainer";
 import {Route, Routes} from "react-router-dom";
 import PanelControlEmpty from "./PanelControlEmpty";
 
@@ -9,7 +9,7 @@ const PanelControlReducer: React.FC = () => {
         <>
             <Routes>
                 <Route index element={<PanelControlEmpty />} />
-                <Route path={"explorer"} element={<DrawerListContainer />} />
+                <Route path={"explorer"} element={<ExplorerListContainer />} />
             </Routes>
         </>
     )

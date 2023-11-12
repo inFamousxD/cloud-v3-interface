@@ -1,22 +1,25 @@
 import React from 'react';
-import {ExplorerDirectoriesListItemType} from "../ContentPanel/ContentPanel.types";
-import {DirectoriesListItemStyled} from "./DrawerPanel.styled";
+import {ExplorerDirectoriesListItemType} from "../../ContentPanel/ContentPanel.types";
+import {ExplorerListItemStyled} from "./ExplorerPanelComponent.styled";
+import {AppDispatch} from "../../../../redux/store";
+import {useDispatch} from "react-redux";
+import explorerSlice from "../../../../redux/slices/data/explorer";
 
 type DirectoriesListItemType = {
     data: ExplorerDirectoriesListItemType,
     depth: number,
     selected: string,
-    setSelected: React.Dispatch<React.SetStateAction<string>>
 }
-const DrawerListItem:React.FC<DirectoriesListItemType> = (props) => {
+const ExplorerListItem:React.FC<DirectoriesListItemType> = (props) => {
     const { data, depth } = props;
 
     const [displayChildren, setDisplayChildren] = React.useState<boolean>(false);
+    const dispatch: AppDispatch = useDispatch();
 
     return (
-        <DirectoriesListItemStyled $depth={depth} $hasChildren={data.children !== undefined} $isSelected={data.id === props.selected}>
+        <ExplorerListItemStyled $depth={depth} $hasChildren={data.children !== undefined} $isSelected={data.id === props.selected}>
             <div onClick={() => {
-                props.setSelected(data.id)
+                dispatch(explorerSlice.actions.updateSelected({ selected: data.id }));
             }} onDoubleClick={() => {
                 data.children && setDisplayChildren(!displayChildren)
             }} className={"item-name-block"}>
@@ -36,11 +39,11 @@ const DrawerListItem:React.FC<DirectoriesListItemType> = (props) => {
             </div>
             {
                 displayChildren && data.children && data.children.map(item => {
-                    return <DrawerListItem key={item.name} data={item} depth={depth+1} selected={props.selected} setSelected={props.setSelected} />
+                    return <ExplorerListItem key={item.name} data={item} depth={depth+1} selected={props.selected} />
                 })
             }
-        </DirectoriesListItemStyled>
+        </ExplorerListItemStyled>
     );
 }
 
-export default DrawerListItem;
+export default ExplorerListItem;

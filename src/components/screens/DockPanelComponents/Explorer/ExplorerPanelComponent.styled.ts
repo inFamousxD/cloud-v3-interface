@@ -1,7 +1,7 @@
 import styled from "styled-components";
-import {darkTheme} from "../../../theme/dark.colors";
+import {darkTheme} from "../../../../theme/dark.colors";
 
-export const DirectoriesListItemStyled = styled.div<{ $depth: number, $hasChildren: boolean, $isSelected: boolean }>`
+export const ExplorerListItemStyled = styled.div<{ $depth: number, $hasChildren: boolean, $isSelected: boolean }>`
   .material-symbols-outlined {
     &.expand-icon {
       visibility: ${props => props.$hasChildren ? '' : 'hidden'};
@@ -45,7 +45,7 @@ export const DirectoriesListItemStyled = styled.div<{ $depth: number, $hasChildr
   font-size: 13px;
 `;
 
-export const DirectoriesHeaderStyled = styled.div`
+export const ExplorerHeaderStyled = styled.div`
   display: flex;
   align-items: center;
   font-size: 13px;
